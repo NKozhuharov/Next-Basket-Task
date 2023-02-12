@@ -12,7 +12,8 @@ The setup assumes that the following software is already installed:
 * Navigate to desired folder and execute
 
 ```shell
-    cd next_basket_task
+    git clone https://github.com/NKozhuharov/Next-Basket-Task.git
+    cd Next-Basket-Task
     git config core.fileMode false
     cd docker/images/next-basket
     docker build --tag next-basket/php-apache:latest .
