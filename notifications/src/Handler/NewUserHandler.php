@@ -17,7 +17,6 @@ class NewUserHandler
     {
         $user = $newUserMessage->getUser();
 
-        $this->logger->warning('User created ' . $user->toString());
-
+        $this->logger->info('User created ' . $user->toString());
     }
 }
