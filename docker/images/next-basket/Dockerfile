@@ -26,13 +26,11 @@ RUN apt-get update &&\
 RUN apt-get install -y --no-install-recommends libzip-dev
 
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
-RUN docker-php-ext-install -j$(nproc) zip mysqli soap gd pdo pdo_mysql opcache sockets
+RUN docker-php-ext-install -j$(nproc) zip mysqli soap gd pdo pdo_mysql opcache
 RUN docker-php-ext-enable opcache
 
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
-
-RUN docker-php-ext-enable sockets
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
