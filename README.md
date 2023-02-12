@@ -57,3 +57,17 @@ The setup assumes that the following software is already installed:
 
 #### RabbitMQ
 * To access the administrative panel, open http://localhost:8080/
+
+#### Creating a new User
+* Go to https://documenter.getpostman.com/view/8850308/2s935uGg1c and click **Run in Postman** button
+* Navigate to the **Next Basket Task** collection
+* Execute **Create User** route
+  * The User Service will create a new User in the database
+  * A message will be pushed to the RabbitMQ, which will be consumed by the Notifications Service
+  * In the terminal, name **Container Console Notifications**, the logged output can be seen
+  * The contents of the whole log file can be verified in the same terminal:
+  ```shell
+    cd /var/www/next-basket/var/log
+    cat local.log
+  ```
+  * The API endpoint will return a JSON response with the attributes of the user
