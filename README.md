@@ -54,3 +54,6 @@ The setup assumes that the following software is already installed:
   composer install
   php bin/console messenger:consume -vv user_messages
   ```
+
+#### RabbitMQ
+* To access the administrative panel, open http://localhost:8080/
