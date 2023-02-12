@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+  next-basket-users-web:
+    image: next-basket/php-apache:latest
+    networks:
+      default:
+        aliases:
+          - next-basket-users-web
+    ports:
+      - '80:80'
+    environment:
+      XDEBUG_CONFIG: 'remote_host=$HOST_IP'
+      PHP_IDE_CONFIG: 'serverName=next-basket-users-web.docker'
+    links:
+      - mysql-users
+    volumes:
+      - ../../users:/var/www/next-basket
+  mysql-users:
+    image: mysql
+    networks:
+      default:
+        aliases:
+          - next-basket-users-database
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --innodb_flush_log_at_trx_commit=0
+      --default-authentication-plugin=mysql_native_password
+      --sql-mode="ALLOW_INVALID_DATES"
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: 'next_basket_users'
+      MYSQL_USER: 'next_basket'
+      MYSQL_PASSWORD: 'CXyAmAXT3DSPK'
+      MYSQL_ROOT_PASSWORD: 'CXyAmAXT3DSPK'
+
+  next-basket-notifications-web:
+    image: next-basket/php-apache:latest
+    networks:
+      default:
+        aliases:
+          - next-basket-notifications-web
+    ports:
+      - '81:80'
+    environment:
+      XDEBUG_CONFIG: 'remote_host=$HOST_IP'
+      PHP_IDE_CONFIG: 'serverName=next-basket-notifications-web.docker'
+    volumes:
+      - ../../notifications:/var/www/next-basket
+
+  next-basket-rabbit-mq:
+    image: rabbitmq:3-management
+    networks:
+      default:
+        aliases:
+          - next-basket-rabbit-mq
+    ports:
+      - '8080:15672'
+      - '5672:5672'

@@ -1,0 +1,1 @@
+docker exec -it next-basket_next-basket-users-web_1 /bin/bash

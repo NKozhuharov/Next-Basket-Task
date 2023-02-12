@@ -1,0 +1,1 @@
+docker exec -it next-basket_next-basket-notifications-web_1 /bin/bash
