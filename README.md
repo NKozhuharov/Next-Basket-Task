@@ -72,3 +72,14 @@ The setup assumes that the following software is already installed:
     cat local.log
   ```
   * The API endpoint will return a JSON response with the attributes of the user
+
+#### To run the tests for Users Service
+* Enter inside the container with the run configuration **Container Console Users**.
+* From inside the container, execute:
+  ```shell
+    php bin/console --env=test doctrine:schema:create
+    XDEBUG_MODE=coverage php bin/phpunit --coverage-html public/code_coverage
+  ```
+* This will generate a coverage report in the public directory, which can be opened by visiting http://127.0.0.1:80/code_coverage/Entity/index.html
+  * I know it's wrong to place the coverage report in the public folder. I did it to avoid additional server configuration.
+  * In production, it must be hidden, as it contains the code structure.

@@ -26,16 +26,29 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
 
+    /**
+     * @codeCoverageIgnore
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @codeCoverageIgnore
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * @codeCoverageIgnore
+     * @param string|null $email
+     * @return $this
+     */
     public function setEmail(?string $email): self
     {
         $this->email = $email;
@@ -43,11 +56,20 @@ class User
         return $this;
     }
 
+    /**
+     * @codeCoverageIgnore
+     * @return string|null
+     */
     public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
+    /**
+     * @codeCoverageIgnore
+     * @param string|null $firstName
+     * @return $this
+     */
     public function setFirstName(?string $firstName): self
     {
         $this->firstName = $firstName;
@@ -55,11 +77,20 @@ class User
         return $this;
     }
 
+    /**
+     * @codeCoverageIgnore
+     * @return string|null
+     */
     public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
+    /**
+     * @codeCoverageIgnore
+     * @param string|null $lastName
+     * @return $this
+     */
     public function setLastName(?string $lastName): self
     {
         $this->lastName = $lastName;
@@ -75,11 +106,6 @@ class User
             'firstName' => $this->firstName,
             'lastName'  => $this->lastName,
         ];
-    }
-
-    public function toString(): string
-    {
-        return "$this->id: $this->firstName $this->lastName ($this->email)";
     }
 
     public static function loadValidatorMetadata(ClassMetadata $metadata): void
