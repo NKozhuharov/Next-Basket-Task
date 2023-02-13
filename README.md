@@ -37,7 +37,7 @@ The setup assumes that the following software is already installed:
 #### Users Service
 
 * Enter inside the container with the run configuration **Container Console Users**. This will open the Users container in a terminal in PhpStorm.
-* From inside the container, execute:
+* Inside the container, execute:
 
   ```sh
   cd /var/www/next-basket
@@ -48,7 +48,7 @@ The setup assumes that the following software is already installed:
 #### Notifications Service
 
 * Enter inside the container with the run configuration **Container Console Notifications**. This will open the Users container in a terminal in PhpStorm.
-* From inside the container, execute:
+* Inside the container, execute:
 
   ```sh
   cd /var/www/next-basket
@@ -75,7 +75,7 @@ The setup assumes that the following software is already installed:
 
 #### To run the tests for Users Service
 * Enter inside the container with the run configuration **Container Console Users**.
-* From inside the container, execute:
+* Inside the container, execute:
   ```shell
     php bin/console --env=test doctrine:schema:create
     XDEBUG_MODE=coverage php bin/phpunit --coverage-html public/code_coverage
@@ -83,3 +83,17 @@ The setup assumes that the following software is already installed:
 * This will generate a coverage report in the public directory, which can be opened by visiting http://127.0.0.1:80/code_coverage/Entity/index.html
   * I know it's wrong to place the coverage report in the public folder. I did it to avoid additional server configuration.
   * In production, it must be hidden, as it contains the code structure.
+
+#### To run the tests for Notifications Service
+* Enter inside the container with the run configuration **Container Console Notifications**.
+* Inside the container, execute:
+  ```shell
+    XDEBUG_MODE=coverage php bin/phpunit --coverage-html public/code_coverage
+  ```
+
+#### Notes
+* This is my first attempt to write an application in Symfony, I believe I understood the basics.
+* I had to read through a lot of documentation and examples to put together the code. The solution is probably not the best (code quality, implementation), but it's my first attempt, and it's working, so I'm happy with it :)
+* This is also my first attempt to use RabbitMQ, I've only used the PubSub messaging service before.
+* I'm not sure about the tests, which I've provided, as I said, I only have experience in writing unit tests and here they are not exactly suitable.
+* Overall, I've had fun and managed to learn some new things :)
