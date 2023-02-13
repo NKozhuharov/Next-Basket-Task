@@ -36,6 +36,26 @@ services:
       MYSQL_PASSWORD: 'CXyAmAXT3DSPK'
       MYSQL_ROOT_PASSWORD: 'CXyAmAXT3DSPK'
 
+  mysql-test:
+    image: mysql
+    networks:
+      default:
+        aliases:
+          - next-basket-test-database
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --innodb_flush_log_at_trx_commit=0
+      --default-authentication-plugin=mysql_native_password
+      --sql-mode="ALLOW_INVALID_DATES"
+    ports:
+      - '3305:3306'
+    environment:
+      MYSQL_DATABASE: 'next_basket_test'
+      MYSQL_USER: 'next_basket'
+      MYSQL_PASSWORD: 'CXyAmAXT3DSPK'
+      MYSQL_ROOT_PASSWORD: 'CXyAmAXT3DSPK'
+
   next-basket-notifications-web:
     image: next-basket/php-apache:latest
     networks:
